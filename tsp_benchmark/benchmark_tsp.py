@@ -337,7 +337,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--min-cities", type=int, default=4)
     parser.add_argument("--max-cities", type=int, default=10)
-    parser.add_argument("--instances", type=int, default=5)
+    parser.add_argument("--instances", type=int, default=10)
     parser.add_argument("--seed", type=int, default=20260728)
     parser.add_argument("--brute-max-cities", type=int, default=9)
     parser.add_argument("--outdir", type=Path, default=Path("results"))

@@ -12,9 +12,9 @@ The first result is the runtime comparison. This is shown in the runtime chart. 
 
 From this chart, we can see that Nearest Neighbor is always the fastest method. This is expected, because it only chooses the nearest unvisited city at each step. However, speed alone does not mean it gives the best route.
 
-Brute Force is also exact, but its running time increases much faster as the number of cities becomes larger. This is because Brute Force checks every possible route. For example, at 9 cities, Brute Force checks `40,320` possible routes and takes about `0.0145` seconds on average. This may still sound small, but the growth is factorial, so if we continue increasing the number of cities, the runtime will become much worse.
+Brute Force is also exact, but its running time increases much faster as the number of cities becomes larger. This is because Brute Force checks every possible route. For example, at 9 cities, Brute Force checks `40,320` possible routes and takes about `0.0154` seconds on average. This may still sound small, but the growth is factorial, so if we continue increasing the number of cities, the runtime will become much worse.
 
-Branch and Bound also gives the optimal result, but it performs better than Brute Force for larger cases because it avoids searching unnecessary branches. At 9 cities, Branch and Bound takes about `0.0064` seconds on average, which is faster than Brute Force while still producing the optimal route.
+Branch and Bound also gives the optimal result, but it performs better than Brute Force for larger cases because it avoids searching unnecessary branches. At 9 cities, Branch and Bound takes about `0.0069` seconds on average, which is faster than Brute Force while still producing the optimal route.
 
 The second result is the pruning performance of Branch and Bound. This is the most important result in our experiment. The pruning chart shows how much of the search space is avoided by the algorithm.
 
@@ -46,9 +46,9 @@ Therefore, based on our results, Branch and Bound is the best choice among these
 
 从这张图可以看到，Nearest Neighbor 始终是最快的方法。这是符合预期的，因为它每一步只选择最近的未访问城市。不过，速度快并不代表它一定能找到最好的路线。
 
-Brute Force 也是精确算法，但随着城市数量增加，它的运行时间增长得更快。这是因为 Brute Force 会检查每一种可能的路线。比如在 9 个城市时，Brute Force 需要检查 `40,320` 条可能路线，平均耗时大约是 `0.0145` 秒。这个数字看起来可能还不大，但它的增长是阶乘级别的，所以如果继续增加城市数量，运行时间会迅速变得非常大。
+Brute Force 也是精确算法，但随着城市数量增加，它的运行时间增长得更快。这是因为 Brute Force 会检查每一种可能的路线。比如在 9 个城市时，Brute Force 需要检查 `40,320` 条可能路线，平均耗时大约是 `0.0154` 秒。这个数字看起来可能还不大，但它的增长是阶乘级别的，所以如果继续增加城市数量，运行时间会迅速变得非常大。
 
-Branch and Bound 同样可以得到最优结果，但在较大规模时，它比 Brute Force 表现更好，因为它可以避免搜索不必要的分支。比如在 9 个城市时，Branch and Bound 平均耗时大约是 `0.0064` 秒，比 Brute Force 更快，同时仍然能得到最优路线。
+Branch and Bound 同样可以得到最优结果，但在较大规模时，它比 Brute Force 表现更好，因为它可以避免搜索不必要的分支。比如在 9 个城市时，Branch and Bound 平均耗时大约是 `0.0069` 秒，比 Brute Force 更快，同时仍然能得到最优路线。
 
 第二个结果是 Branch and Bound 的剪枝表现。这是我们实验中最重要的结果。剪枝图展示了这个算法避免了多少搜索空间。
 
