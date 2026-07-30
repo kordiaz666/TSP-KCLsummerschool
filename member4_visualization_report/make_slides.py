@@ -136,7 +136,71 @@ add_bg(slide, LIGHT_BG)
 add_textbox(slide, 0.5, 0.3, 12, 1, "Results: Route Quality (NN vs Optimal)", 36, True, DARK, PP_ALIGN.LEFT)
 add_image(slide, r'D:\0work\www\成员4\quality_comparison.png', 1.5, 1.5, 10, 5)
 
-# ==================== SLIDE 10: Key Findings ====================
+# ==================== SLIDE 10: Summary - Algorithms Recap ====================
+slide = prs.slides.add_slide(prs.slide_layouts[6])
+add_bg(slide)
+add_textbox(slide, 0.5, 0.3, 12, 1, "Summary: Three Algorithms Compared", 36, True, RED, PP_ALIGN.LEFT)
+add_bullet_slide(slide, 0.5, 1.5, 12, 5.5, [
+    "Brute Force — Exact baseline. Enumerates all (n-1)!/2 permutations. Guarantees optimality but O(n!). Impractical beyond n=10.",
+    "Branch & Bound — Exact with pruning. DFS + lower bound evaluation. Cuts branches when LB >= best_cost. Optimal, far more efficient.",
+    "Nearest Neighbor — Greedy heuristic. Always picks the closest unvisited city. O(n²) speed but 2–10% above optimal on average.",
+    "Takeaway: B&B strikes the best balance between correctness and efficiency for exact TSP solving at small to medium scale."
+], 22, WHITE)
+
+# ==================== SLIDE 11: Summary - Key Results ====================
+slide = prs.slides.add_slide(prs.slide_layouts[6])
+add_bg(slide)
+add_textbox(slide, 0.5, 0.3, 12, 1, "Summary: Key Results", 36, True, RED, PP_ALIGN.LEFT)
+# Results table
+table_data = [
+    ["N", "B&B Runtime", "BF Runtime", "B&B Nodes", "BF Nodes", "Pruning Rate"],
+    ["4", "0.02ms", "0.006ms", "15", "6", "3.8%"],
+    ["7", "0.66ms", "0.28ms", "428", "720", "78.1%"],
+    ["9", "6.5ms", "14.3ms", "4,107", "40,320", "96.3%"],
+    ["10", "23ms", "N/A", "12,472", "1,814,400", "98.7%"],
+]
+rows, cols = len(table_data), len(table_data[0])
+tbl = slide.shapes.add_table(rows, cols, Inches(0.8), Inches(1.8), Inches(11.5), Inches(3.5)).table
+for r in range(rows):
+    for c in range(cols):
+        cell = tbl.cell(r, c)
+        cell.text = table_data[r][c]
+        for paragraph in cell.text_frame.paragraphs:
+            paragraph.font.size = Pt(16)
+            paragraph.alignment = PP_ALIGN.CENTER
+            if r == 0:
+                paragraph.font.bold = True
+                paragraph.font.color.rgb = WHITE
+            else:
+                paragraph.font.color.rgb = DARK
+        if r == 0:
+            cell.fill.solid()
+            cell.fill.fore_color.rgb = RED
+        elif r % 2 == 0:
+            cell.fill.solid()
+            cell.fill.fore_color.rgb = RGBColor(0xDF, 0xE6, 0xE9)
+        else:
+            cell.fill.solid()
+            cell.fill.fore_color.rgb = WHITE
+
+add_textbox(slide, 0.8, 5.5, 11, 1.5,
+    "Key insight: B&B prunes 98.7% of search space at n=10. It becomes faster than BF from n=7 onward. "
+    "For n=10, BF is infeasible (1.8M paths) while B&B completes in 23ms.",
+    18, False, GRAY, PP_ALIGN.LEFT)
+
+# ==================== SLIDE 12: Summary - Conclusions ====================
+slide = prs.slides.add_slide(prs.slide_layouts[6])
+add_bg(slide)
+add_textbox(slide, 0.5, 0.3, 12, 1, "Summary: Conclusions", 36, True, RED, PP_ALIGN.LEFT)
+add_bullet_slide(slide, 0.5, 1.5, 12, 5.5, [
+    "Branch and Bound is the best choice among these three methods when we need an exact TSP solution but also want better efficiency than simple exhaustive search.",
+    "The pruning mechanism becomes more effective as problem size increases — the lower bound provides increasing value for larger instances.",
+    "Nearest Neighbor is the fastest but may produce longer routes. Suitable when speed is critical and optimality can be sacrificed.",
+    "Brute Force is accurate but does not scale. Its exponential growth makes it unusable beyond 10–12 cities.",
+    "Limitation: B&B remains exponential; for n > 20 it becomes impractical. Tighter bounds (MST, Held-Karp) could improve pruning."
+], 20, WHITE)
+
+# ==================== SLIDE 13: Key Findings ====================
 slide = prs.slides.add_slide(prs.slide_layouts[6])
 add_bg(slide)
 add_textbox(slide, 0.5, 0.3, 12, 1, "Key Findings", 36, True, RED, PP_ALIGN.LEFT)
@@ -148,7 +212,7 @@ add_bullet_slide(slide, 0.5, 1.5, 12, 5.5, [
     "B&B is practical for n ≤ 14; beyond that, heuristics are needed."
 ], 22, WHITE)
 
-# ==================== SLIDE 11: Conclusion ====================
+# ==================== SLIDE 14: Conclusion ====================
 slide = prs.slides.add_slide(prs.slide_layouts[6])
 add_bg(slide)
 add_textbox(slide, 0.5, 0.3, 12, 1, "Conclusion & Future Work", 36, True, RED, PP_ALIGN.LEFT)
@@ -160,7 +224,7 @@ add_bullet_slide(slide, 0.5, 1.5, 12, 5.5, [
     "Future work: Hybrid approaches combining B&B with metaheuristics."
 ], 22, WHITE)
 
-# ==================== SLIDE 12: Thanks ====================
+# ==================== SLIDE 15: Thanks ====================
 slide = prs.slides.add_slide(prs.slide_layouts[6])
 add_bg(slide)
 add_textbox(slide, 1.5, 2.5, 10, 1.5, "Thank You", 48, True, WHITE, PP_ALIGN.CENTER)
